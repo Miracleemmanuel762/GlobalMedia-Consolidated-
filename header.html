@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalMedia Consolidated Header</title>
+    <!-- Font Awesome for Professional Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+        }
+
+        /* Header Container */
+        .site-header {
+            background-color: #0d1b2a; /* Deep professional navy */
+            border-bottom: 3px solid #e0a96d; /* Sleek gold accent line */
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Branding Section (Logo + Site Name) */
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px; /* Adjust based on your image size */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d; /* Accent gold for 'Consolidated' */
+        }
+
+        /* Navigation Menu */
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0; /* Balanced muted grey-blue */
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover & Active States */
+        .nav-link:hover {
+            color: #e0a96d; /* Transitions to gold on hover */
+        }
+
+        .nav-link:hover i {
+            transform: translateY(-2px);
+        }
+
+        /* Special Styling for Profile Icon to stand out */
+        .nav-link.profile-item i {
+            color: #e0a96d;
+            font-size: 22px;
+        }
+        
+        .nav-link.profile-item:hover i {
+            color: #ffffff;
+        }
+
+        /* Responsive Design for Mobile Devices */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 10px;
+            }
+            
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <!-- Left Side: Logo and Site Name -->
+        <a href="index.html" class="header-brand">
+            <!-- Replace 'your-logo-file.png' with your actual transparent logo image file path -->
+            <img src="your-logo-file.png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <!-- Right Side: Navigation Icons with Links -->
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="notification.html" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link profile-item">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+</body>
+  </html>
