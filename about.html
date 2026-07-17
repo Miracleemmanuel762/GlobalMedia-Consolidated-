@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GlobalMedia Consolidated</title>
+    <!-- Font Awesome for Professional Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==========================================
+           2. HEADER STYLES
+           ========================================== */
+        .site-header {
+            background-color: #0d1b2a;
+            border-bottom: 3px solid #e0a96d;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #e0a96d;
+        }
+
+        .nav-link:hover i {
+            transform: translateY(-2px);
+        }
+
+        .nav-link.profile-item i {
+            color: #e0a96d;
+            font-size: 22px;
+        }
+        
+        .nav-link.profile-item:hover i {
+            color: #ffffff;
+        }
+
+        /* ==========================================
+           3. ABOUT MAIN CONTENT STYLES
+           ========================================== */
+        .main-content {
+            flex: 1 0 auto;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Intro Section */
+        .about-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .about-intro h1 {
+            color: #0d1b2a;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .about-intro h1 span {
+            color: #e0a96d;
+        }
+
+        .about-intro p {
+            color: #4a5568;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Ecosystem Grid Layout */
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pillar-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border-top: 4px solid #0d1b2a;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            border-top-color: #e0a96d; /* Shifts to gold border on hover */
+        }
+
+        .icon-box {
+            background-color: rgba(13, 27, 42, 0.05);
+            color: #0d1b2a;
+            width: 55px;
+            height: 55px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .pillar-card:hover .icon-box {
+            background-color: #e0a96d;
+            color: #ffffff;
+        }
+
+        .pillar-card h2 {
+            color: #0d1b2a;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .pillar-card p {
+            color: #718096;
+            font-size: 14.5px;
+            line-height: 1.6;
+        }
+
+        /* Custom emphasis card for "and many more..." */
+        .pillar-card.more-card {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+            border-top: 4px solid #e0a96d;
+        }
+
+        .pillar-card.more-card h2 {
+            color: #ffffff;
+        }
+
+        .pillar-card.more-card p {
+            color: #a0aec0;
+        }
+
+        .pillar-card.more-card .icon-box {
+            background-color: rgba(224, 169, 109, 0.2);
+            color: #e0a96d;
+        }
+
+        /* ==========================================
+           4. FOOTER STYLES
+           ========================================== */
+        .site-footer {
+            background-color: #0d1b2a;
+            border-top: 3px solid #e0a96d;
+            color: #ffffff;
+            padding: 40px 40px 20px 40px;
+            flex-shrink: 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-brand h2 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand h2 span {
+            color: #e0a96d;
+        }
+
+        .footer-brand p {
+            color: #a0aec0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-links-container {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column h3 {
+            color: #e0a96d;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column a {
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 10px;
+            transition: color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-column a:hover {
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(160, 174, 192, 0.2);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #a0aec0;
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           5. RESPONSIVE DESIGN (MOBILE)
+           ========================================== */
+        @media (max-width: 768px) {
+            /* Header Mobile */
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 10px;
+            }
+            
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+
+            /* Main Content Mobile */
+            .main-content {
+                padding: 40px 15px;
+            }
+
+            .about-intro h1 {
+                font-size: 28px;
+            }
+
+            .about-intro p {
+                font-size: 15px;
+            }
+
+            /* Footer Mobile */
+            .site-footer {
+                padding: 30px 20px 20px 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .footer-links-container {
+                width: 100%;
+                justify-content: space-between;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GLOBAL SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="header-brand">
+            <!-- Replace 'your-logo-file.png' with your actual image path -->
+            <img src="your-logo-file.png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="notification.html" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link profile-item">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- MAIN ABOUT US CONTENT -->
+    <main class="main-content">
+        <!-- Introductory Profile -->
+        <section class="about-intro">
+            <h1>About <span>Our Company</span></h1>
+            <p>
+                GlobalMedia Consolidated is a dynamic, highly integrated enterprise dedicated to advancing human potential, digital landscape innovation, and strategic guidance across multiple critical industries.
+            </p>
+        </section>
+
+        <!-- Dynamic Ecosystem Grid -->
+        <section class="ecosystem-grid">
+            
+            <!-- Technology -->
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fa-solid fa-code"></i></div>
+                <h2>Technology</h2>
+                <p>Building high-performance frameworks, customized platforms, and robust web solutions engineered for maximum performance and fluid accessibility.</p>
+            </div>
+
+            <!-- Gospel -->
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fa-solid fa-book-bible"></i></div>
+                <h2>Gospel</h2>
+                <p>Spreading purposeful, faith-centered truth globally to establish strong spiritual foundations and guide individuals into a deeply principled life.</p>
+            </div>
+
+            <!-- Motivation -->
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                <h2>Motivation</h2>
+                <p>Delivering inspiring, transformative principles aimed at breaking mental limits, rebuilding positive habits, and driving intentional personal execution.</p>
+            </div>
+
+            <!-- Finance -->
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                <h2>Finance</h2>
+                <p>Demystifying digital monetization landscapes, online platforms, and practical assets to empower people toward sustainable economic progress.</p>
+            </div>
+
+            <!-- Mentorship Services -->
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h2>Mentorship Services</h2>
+                <p>Providing specialized training tracks to accelerate skills in programming, digital design foundations, and effective high-value career pathways.</p>
+            </div>
+
+            <!-- Social Media -->
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fa-solid fa-share-nodes"></i></div>
+                <h2>Social Media</h2>
+                <p>Architecting tailored spaces for dynamic networking and interactive content distribution to drive continuous virtual user engagement.</p>
+            </div>
+
+            <!-- Expansion Card -->
+            <div class="pillar-card more-card">
+                <div class="icon-box"><i class="fa-solid fa-circle-plus"></i></div>
+                <h2>And Many More...</h2>
+                <p>GlobalMedia Consolidated continuously diversifies its horizons, scaling operations into emerging creative arenas to stay ahead in an evolving digital age.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>GlobalMedia <span>Consolidated</span></h2>
+                <p>Connecting insights, media solutions, and technical excellence on a global scale.</p>
+            </div>
+
+            <div class="footer-links-container">
+                <!-- Company Links -->
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="ceo.html">Office of the CEO</a>
+                </div>
+
+                <!-- Platform Links -->
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <a href="mentorship.html">Mentorship</a>
+                    <a href="profile.html">User Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+  </html>
