@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalMedia Consolidated</title>
+    <!-- Font Awesome for Professional Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            display: flex;
+            flex-direction: column; /* Keeps footer at the bottom */
+        }
+
+        /* Main Content Wrapper */
+        .main-content {
+            flex: 1 0 auto;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ==========================================
+           2. HEADER STYLES
+           ========================================== */
+        .site-header {
+            background-color: #0d1b2a; /* Deep professional navy */
+            border-bottom: 3px solid #e0a96d; /* Sleek gold accent line */
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d; /* Accent gold */
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover States */
+        .nav-link:hover {
+            color: #e0a96d;
+        }
+
+        .nav-link:hover i {
+            transform: translateY(-2px);
+        }
+
+        .nav-link.profile-item i {
+            color: #e0a96d;
+            font-size: 22px;
+        }
+        
+        .nav-link.profile-item:hover i {
+            color: #ffffff;
+        }
+
+        /* ==========================================
+           3. FOOTER STYLES
+           ========================================== */
+        .site-footer {
+            background-color: #0d1b2a;
+            border-top: 3px solid #e0a96d;
+            color: #ffffff;
+            padding: 40px 40px 20px 40px;
+            flex-shrink: 0; /* Prevents footer from collapsing */
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-brand h2 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand h2 span {
+            color: #e0a96d;
+        }
+
+        .footer-brand p {
+            color: #a0aec0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-links-container {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-column h3 {
+            color: #e0a96d;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-column a {
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 10px;
+            transition: color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-column a:hover {
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(160, 174, 192, 0.2);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #a0aec0;
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           4. RESPONSIVE DESIGN (MOBILE)
+           ========================================== */
+        @media (max-width: 768px) {
+            /* Header Mobile */
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 10px;
+            }
+            
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+
+            /* Footer Mobile */
+            .site-footer {
+                padding: 30px 20px 20px 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .footer-links-container {
+                width: 100%;
+                justify-content: space-between;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GLOBAL SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="header-brand">
+            <!-- Replace 'your-logo-file.png' with your actual image path -->
+            <img src="your-logo-file.png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="notification.html" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link profile-item">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- MAIN PAGE CONTENT (Put your body layout elements here) -->
+    <main class="main-content">
+        <!-- Your main website content goes right here -->
+    </main>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>GlobalMedia <span>Consolidated</span></h2>
+                <p>Connecting insights, media solutions, and technical excellence on a global scale.</p>
+            </div>
+
+            <div class="footer-links-container">
+                <!-- Company Links -->
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="ceo.html">Office of the CEO</a>
+                </div>
+
+                <!-- Platform Links -->
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <a href="mentorship.html">Mentorship</a>
+                    <a href="profile.html">User Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+      </html>
