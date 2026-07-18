@@ -1,4 +1,7 @@
-import { kv } from '@vercel/kv';
+import Redis from 'ioredis';
+
+// Automatically connects using Vercel's standard injected Redis environment variable
+const redis = new Redis(process.env.REDIS_URL);
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -14,18 +17,19 @@ export default async function handler(req, res) {
     try {
         const normalizedEmail = email.toLowerCase().trim();
         
-        // Check if user already exists in KV storage
-        const existingUser = await kv.get(`user:${normalizedEmail}`);
+        // Check if user exists
+        const existingUser = await redis.get(`user:${normalizedEmail}`);
         if (existingUser) {
             return res.status(400).json({ error: 'An account with this email already exists.' });
         }
 
-        // Store the user info
-        const newUser = { name, email: normalizedEmail, password }; // In a production app, hash this password!
-        await kv.set(`user:${normalizedEmail}`, newUser);
+        // Save user structure
+        const newUser = { name, email: normalizedEmail, password };
+        await redis.set(`user:${normalizedEmail}`, JSON.stringify(newUser));
 
         return res.status(200).json({ success: true, message: 'Registration successful!' });
     } catch (error) {
-        return res.status(500).json({ error: 'Database error. Please try again.' });
+        console.error("Redis Connection Error:", error);
+        return res.status(500).json({ error: `Database error: ${error.message}` });
     }
-}
+            }
