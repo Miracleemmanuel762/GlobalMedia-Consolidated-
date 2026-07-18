@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GlobalMedia Consolidated</title>
+    <!-- Font Awesome for Professional Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #f4f6f9;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==========================================
+           2. HEADER STYLES (Matching your Navbar)
+           ========================================== */
+        .site-header {
+            background-color: #0d1b2a; /* Deep professional navy */
+            border-bottom: 3px solid #e0a96d; /* Sleek gold accent line */
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d; /* Accent gold */
+        }
+
+        /* Navigation Menu */
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0; /* Balanced muted grey-blue */
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover & Active States */
+        .nav-link:hover, .nav-link.active {
+            color: #e0a96d; /* Transitions to gold */
+        }
+
+        .nav-link:hover i {
+            transform: translateY(-2px);
+        }
+
+        /* Special Profile Link Accent */
+        .nav-link.profile-item i {
+            color: #e0a96d;
+            font-size: 22px;
+        }
+        
+        .nav-link.profile-item:hover i {
+            color: #ffffff;
+        }
+
+        /* ==========================================
+           3. MAIN LAYOUT & CONTACT CARDS
+           ========================================== */
+        .main-content {
+            flex: 1 0 auto;
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-title {
+            color: #0d1b2a;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            color: #666666;
+            font-size: 16px;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        .contact-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            border-top: 4px solid #e0a96d;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 35px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(13, 27, 42, 0.05);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            border: 1px solid rgba(224, 169, 109, 0.3);
+        }
+
+        /* Platform Color Coding */
+        .fb-icon { color: #1877f2; }
+        .wa-icon { color: #25d366; }
+        .mail-icon { color: #ea4335; }
+
+        .card-title {
+            color: #0d1b2a;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card-detail {
+            color: #555555;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #0d1b2a;
+            color: #e0a96d;
+            border: 1px solid #e0a96d;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .contact-btn:hover {
+            background-color: #e0a96d;
+            color: #0d1b2a;
+        }
+
+        /* ==========================================
+           4. FOOTER STYLES
+           ========================================== */
+        .site-footer {
+            background-color: #0d1b2a;
+            border-top: 3px solid #e0a96d;
+            color: #ffffff;
+            padding: 20px 40px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .site-footer p {
+            color: #a0aec0;
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           5. RESPONSIVE DESIGN (MOBILE)
+           ========================================== */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 10px;
+            }
+
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+
+            .page-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GLOBAL SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="header-brand">
+            <img src="https://i.postimg.cc/W1YC1hyC/ei-1784317566335-removebg-preview-(1).png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <!-- Custom Navbar with Dashboard included -->
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link active">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="notification.html" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link profile-item">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- MAIN INTERACTIVE CONTACT SECTION -->
+    <main class="main-content">
+        <h2 class="page-title">Connect With Us</h2>
+        <p class="page-subtitle">Reach out through our secure communication and community lines. Select an operation below to interface directly with our teams.</p>
+
+        <div class="contact-grid">
+            
+            <!-- FACEBOOK PROFILE -->
+            <div class="contact-card">
+                <div class="card-icon fb-icon">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <h3 class="card-title">Facebook Profile</h3>
+                <p class="card-detail">Follow our official platform page for major operational rollouts, development timelines, and public releases.</p>
+                <a href="https://www.facebook.com/share/1Bh1xPpx88/" target="_blank" class="contact-btn">
+                    Visit Profile <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+
+            <!-- WHATSAPP CHANNEL -->
+            <div class="contact-card">
+                <div class="card-icon wa-icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <h3 class="card-title">WhatsApp Channel</h3>
+                <p class="card-detail">Subscribe directly to our high-priority distribution network for instant project bulletins and notifications.</p>
+                <a href="https://whatsapp.com/channel/0029Vb8p1YZ7T8be9EWJUd0m" target="_blank" class="contact-btn">
+                    Join Channel <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+
+            <!-- EMAIL CORRESPONDENCE -->
+            <div class="contact-card">
+                <div class="card-icon mail-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <h3 class="card-title">Email Portal</h3>
+                <p class="card-detail">File developer feedback, infrastructure inquiries, or official partnership proposals straight to our secure mailbox.</p>
+                <a href="mailto:globalmediaconsolidated@gmail.com" class="contact-btn">
+                    Send Email <i class="fa-solid fa-paper-plane"></i>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="site-footer">
+        <p>&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+    </footer>
+
+</body>
+      </html>
