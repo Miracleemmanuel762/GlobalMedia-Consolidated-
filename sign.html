@@ -588,14 +588,16 @@
 
                 const data = await response.json();
 
+                // === THIS IS THE MODIFIED SIGNUP SUCCESS BLOCK ===
                 if (response.ok) {
                     alert('Account successfully registered!');
-                    // Store brief local session token info if desired
-                    localStorage.setItem('userSession', JSON.stringify(data.user));
-                    window.location.href = 'services.html';
+                    localStorage.setItem('userSession', JSON.stringify({ email: email }));
+                    window.location.href = 'welcome.html';
                 } else {
                     alert(data.error || 'Registration failed.');
                 }
+                // =================================================
+
             } catch (err) {
                 alert('Connection error. Ensure your project is deployed on Vercel.');
             }
@@ -617,17 +619,19 @@
 
                 const data = await response.json();
 
+                // === THIS IS THE MODIFIED SIGNIN SUCCESS BLOCK ===
                 if (response.ok) {
-                    localStorage.setItem('userSession', JSON.stringify(data.user));
+                    localStorage.setItem('userSession', JSON.stringify({ email: email }));
                     window.location.href = 'welcome.html';
                 } else {
                     alert(data.error || 'Invalid credentials.');
                 }
+                // =================================================
+
             } catch (err) {
                 alert('Connection error. Ensure your project is deployed on Vercel.');
             }
         });
-                  </script>
-
+                        </script>
 </body>
   </html>
