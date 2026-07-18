@@ -203,38 +203,43 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            // Check who logged in by passing their cached identifier safely
-            const sessionData = localStorage.getItem('userSession');
-            
-            if (!sessionData) {
-                // Secure fall-back if someone tries to visit welcome.html out of order
-                document.getElementById('user-firstname').textContent = "Client";
+    document.addEventListener("DOMContentLoaded", async () => {
+        const sessionData = localStorage.getItem('userSession');
+        
+        if (!sessionData) {
+            document.getElementById('user-firstname').textContent = "Client (No Session Found)";
+            return;
+        }
+
+        try {
+            const session = JSON.parse(sessionData);
+            const email = session.email;
+
+            if (!email) {
+                document.getElementById('user-firstname').textContent = "Client (Missing Email)";
                 return;
             }
 
-            try {
-                const session = JSON.parse(sessionData);
-                const email = session.email;
+            // Fetch the name directly from your Redis database route
+            const response = await fetch(`/api/get-user?email=${encodeURIComponent(email)}`);
+            const data = await response.json();
 
-                // Hit our backend API to look up the fresh value directly from Redis
-                const response = await fetch(`/api/get-user?email=${encodeURIComponent(email)}`);
-                const data = await response.json();
-
-                if (response.ok && data.name) {
-                    // Extract first name and clean it up elegantly
-                    const firstName = data.name.trim().split(" ")[0];
-                    const capitalized = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
-                    
-                    document.getElementById('user-firstname').textContent = capitalized;
-                } else {
-                    document.getElementById('user-firstname').textContent = "Client";
-                }
-            } catch (err) {
-                console.error("Database check failed, loading general fallback.");
+            if (response.ok && data.name) {
+                // Split the full name and grab the first word
+                const firstName = data.name.trim().split(" ")[0];
+                const capitalized = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+                
+                document.getElementById('user-firstname').textContent = capitalized;
+            } else {
+                // Alert the specific reason the API failed
+                alert("API Error: " + (data.error || "Could not retrieve user data"));
                 document.getElementById('user-firstname').textContent = "Client";
             }
-        });
-    </script>
+        } catch (err) {
+            alert("Network Error: " + err.message);
+            document.getElementById('user-firstname').textContent = "Client";
+        }
+    });
+                                                           </script>
 </body>
       </html>
