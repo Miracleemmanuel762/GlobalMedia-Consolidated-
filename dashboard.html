@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Dashboard - GlobalMedia Consolidated</title>
+    <!-- Font Awesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #f4f6f9;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==========================================
+           2. GLOBAL NAVIGATION HEADER
+           ========================================== */
+        .site-header {
+            background-color: #0d1b2a;
+            border-bottom: 3px solid #e0a96d;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #e0a96d;
+        }
+
+        /* ==========================================
+           3. CORE DASHBOARD CONTENT GRID
+           ========================================== */
+        .main-content {
+            flex: 1 0 auto;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .dashboard-welcome {
+            margin-bottom: 35px;
+        }
+
+        .dashboard-welcome h2 {
+            color: #0d1b2a;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .dashboard-welcome p {
+            color: #666666;
+            font-size: 15px;
+        }
+
+        /* The Hub Command Grid Matrix */
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Individual Card Configurations */
+        .panel-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(13, 27, 42, 0.06);
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .panel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #e0a96d;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .panel-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(13, 27, 42, 0.15);
+        }
+
+        .panel-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .icon-box {
+            background-color: rgba(13, 27, 42, 0.05);
+            color: #0d1b2a;
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: all 0.3s ease;
+        }
+
+        .panel-card:hover .icon-box {
+            background-color: #0d1b2a;
+            color: #e0a96d;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #2ec4b6; /* Active system light */
+        }
+
+        .card-meta h3 {
+            color: #0d1b2a;
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-meta p {
+            color: #666666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .action-route-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #0d1b2a;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 4px;
+            border: 1px solid #0d1b2a;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .action-route-btn:hover {
+            background-color: transparent;
+            color: #0d1b2a;
+            border-color: #0d1b2a;
+        }
+
+        /* ==========================================
+           4. GLOBAL SITE FOOTER
+           ========================================== */
+        .site-footer {
+            background-color: #0d1b2a;
+            border-top: 3px solid #e0a96d;
+            color: #ffffff;
+            padding: 20px 40px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* ==========================================
+           5. RESPONSIVE LAYOUT MEDIA ADAPTATION
+           ========================================== */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 5px;
+            }
+
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+
+            .dashboard-welcome {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="header-brand">
+            <img src="https://i.postimg.cc/W1YC1hyC/ei-1784317566335-removebg-preview-(1).png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="dashboard.html" class="nav-link active">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="notification.html" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- CORE WORKSPACE FRAME -->
+    <main class="main-content">
+        
+        <div class="dashboard-welcome">
+            <h2>Command Central Hub</h2>
+            <p>Access your deployment operations, mentorship tracking frameworks, configuration panels, and asset tickets below.</p>
+        </div>
+
+        <!-- CONTROL LINK INTERACTIVE MATRIX -->
+        <div class="control-grid">
+            
+            <!-- LINK 1: SERVICES -->
+            <div class="panel-card">
+                <div class="card-top">
+                    <div class="icon-box"><i class="fa-solid fa-cubes"></i></div>
+                    <div class="status-dot"></div>
+                </div>
+                <div class="card-meta">
+                    <h3>Core Services</h3>
+                    <p>Explore specialized technical services, architectural systems, and standard operational catalog products.</p>
+                </div>
+                <a href="services.html" class="action-route-btn">Launch Services <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- LINK 2: MENTORSHIP -->
+            <div class="panel-card">
+                <div class="card-top">
+                    <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="status-dot"></div>
+                </div>
+                <div class="card-meta">
+                    <h3>Mentorship Tracks</h3>
+                    <p>Access active blueprints for specialized training tracks including Web, AI, Wapaxo, and deployment servers.</p>
+                </div>
+                <a href="mentorship.html" class="action-route-btn">Enter Portal <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- LINK 3: PARTNERSHIP -->
+            <div class="panel-card">
+                <div class="card-top">
+                    <div class="icon-box"><i class="fa-solid fa-handshake"></i></div>
+                    <div class="status-dot"></div>
+                </div>
+                <div class="card-meta">
+                    <h3>Partnership Matrix</h3>
+                    <p>Review systemic infrastructure joint alliances, cooperative business networks, and enterprise ventures.</p>
+                </div>
+                <a href="partnership.html" class="action-route-btn">View Alliances <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- LINK 4: PROFILE -->
+            <div class="panel-card">
+                <div class="card-top">
+                    <div class="icon-box"><i class="fa-solid fa-user-gear"></i></div>
+                    <div class="status-dot"></div>
+                </div>
+                <div class="card-meta">
+                    <h3>Identity Parameters</h3>
+                    <p>Manage localized operational records, configuration keys, verification vectors, and biographical nodes.</p>
+                </div>
+                <a href="profile.html" class="action-route-btn">Manage Settings <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- LINK 5: SUBMIT -->
+            <div class="panel-card">
+                <div class="card-top">
+                    <div class="icon-box"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <div class="status-dot"></div>
+                </div>
+                <div class="card-meta">
+                    <h3>Ticket Submission</h3>
+                    <p>Transmit verification screenshots, remittance receipts, deployment error logs, and repository links.</p>
+                </div>
+                <a href="submit.html" class="action-route-btn">Upload Assets <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="site-footer">
+        <p style="color: #a0aec0; font-size: 13px;">&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
