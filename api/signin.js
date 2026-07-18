@@ -1,4 +1,6 @@
-import { kv } from '@vercel/kv';
+import Redis from 'ioredis';
+
+const redis = new Redis(process.env.REDIS_URL);
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -13,17 +15,21 @@ export default async function handler(req, res) {
 
     try {
         const normalizedEmail = email.toLowerCase().trim();
-        
-        // Fetch user from Vercel KV
-        const user = await kv.get(`user:${normalizedEmail}`);
+        let user = await redis.get(`user:${normalizedEmail}`);
 
-        if (!user || user.password !== password) {
+        if (!user) {
             return res.status(400).json({ error: 'Invalid email or password.' });
         }
 
-        // Authentication successful
-        return res.status(200).json({ success: true, message: 'Login successful!', user: { name: user.name, email: user.email } });
+        user = JSON.parse(user);
+
+        if (user.password !== password) {
+            return res.status(400).json({ error: 'Invalid email or password.' });
+        }
+
+        return res.status(200).json({ success: true, user: { name: user.name, email: user.email } });
     } catch (error) {
-        return res.status(500).json({ error: 'Database error. Please try again.' });
+        console.error("Redis Connection Error:", error);
+        return res.status(500).json({ error: `Database error: ${error.message}` });
     }
 }
