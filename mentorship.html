@@ -98,17 +98,12 @@
             transform: translateY(-2px);
         }
 
-        .nav-link.profile-item i {
-            color: #e0a96d;
-            font-size: 22px;
-        }
-
         /* ==========================================
            3. PORTAL CORE CONTENT LAYOUT
            ========================================== */
         .main-content {
             flex: 1 0 auto;
-            max-width: 1200px;
+            max-width: 900px;
             width: 100%;
             margin: 0 auto;
             padding: 40px 20px;
@@ -131,137 +126,144 @@
             font-size: 16px;
         }
 
-        /* Interactive Dynamic Section Workspace */
-        .interactive-container {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 30px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            margin-bottom: 50px;
-            border: 1px solid rgba(13, 27, 42, 0.1);
-        }
-
-        /* Sidebar Selector Layer */
-        .selection-sidebar {
-            background-color: #0d1b2a;
-            padding: 20px 0;
+        /* Accordion Service Cards Group */
+        .service-stack {
             display: flex;
             flex-direction: column;
-            border-right: 4px solid #e0a96d;
+            gap: 15px;
+            margin-bottom: 50px;
         }
 
-        .sidebar-btn {
+        .service-accordion {
+            background-color: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #e0a96d;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Header trigger line */
+        .accordion-trigger {
+            width: 100%;
             background: none;
             border: none;
-            color: #a0aec0;
-            padding: 15px 25px;
+            padding: 20px 25px;
             text-align: left;
-            font-size: 15px;
-            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .trigger-left {
             display: flex;
             align-items: center;
-            gap: 12px;
-            width: 100%;
-        }
-
-        .sidebar-btn i {
-            font-size: 18px;
-            width: 25px;
-        }
-
-        .sidebar-btn:hover, .sidebar-btn.active {
-            color: #e0a96d;
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        .sidebar-btn.active {
-            border-left: 4px solid #e0a96d;
-            padding-left: 21px;
-        }
-
-        /* Dynamic Visual Panel */
-        .display-panel {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .course-header {
-            border-bottom: 2px solid #f4f6f9;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .course-title {
+            gap: 15px;
             color: #0d1b2a;
-            font-size: 26px;
+            font-size: 18px;
             font-weight: 700;
         }
 
-        .course-price {
+        .trigger-left i {
+            color: #e0a96d;
+            font-size: 20px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .trigger-arrow {
+            color: #a0aec0;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Target Content Box (Hidden by Default) */
+        .accordion-content {
+            display: none;
+            padding: 0 25px 30px 25px;
+            border-top: 1px solid #f4f6f9;
+            background-color: #fafbfc;
+        }
+
+        /* Active Toggle Visual States */
+        .service-accordion.active-panel {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-accordion.active-panel .trigger-arrow {
+            transform: rotate(180deg);
+            color: #e0a96d;
+        }
+
+        .service-accordion.active-panel .accordion-content {
+            display: block;
+        }
+
+        /* Content Internal Components */
+        .content-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(13, 27, 42, 0.1);
+        }
+
+        .meta-price {
             background-color: rgba(224, 169, 109, 0.15);
             color: #0d1b2a;
             border: 1px solid #e0a96d;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
-            padding: 6px 16px;
+            padding: 4px 12px;
             border-radius: 4px;
         }
 
-        .info-section {
-            margin-bottom: 20px;
+        .meta-delivery {
+            font-size: 14px;
+            color: #555555;
+            font-weight: 600;
         }
 
-        .section-label {
+        .meta-delivery i {
+            color: #e0a96d;
+            margin-right: 5px;
+        }
+
+        .info-label {
             color: #0d1b2a;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-
-        .section-label i {
-            color: #e0a96d;
-        }
-
-        .info-content {
-            color: #555555;
-            font-size: 15px;
-            line-height: 1.6;
+            gap: 6px;
         }
 
         .syllabus-list {
-            list-style-type: none;
-            padding-left: 5px;
+            list-style: none;
+            padding-left: 0;
         }
 
         .syllabus-list li {
             position: relative;
             padding-left: 20px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            color: #555555;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         .syllabus-list li::before {
-            content: "\f00c";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
+            content: "✓";
             position: absolute;
             left: 0;
             color: #e0a96d;
-            font-size: 12px;
+            font-weight: bold;
         }
 
         /* ==========================================
@@ -285,7 +287,7 @@
 
         .steps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 25px;
         }
 
@@ -341,21 +343,6 @@
             font-weight: 600;
         }
 
-        .action-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: #e0a96d;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .action-link:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
         /* ==========================================
            5. GLOBAL SITE FOOTER
            ========================================== */
@@ -368,13 +355,8 @@
             margin-top: auto;
         }
 
-        .site-footer p {
-            color: #a0aec0;
-            font-size: 13px;
-        }
-
         /* ==========================================
-           6. RESPONSIVE DESIGN LAYER (MOBILE)
+           6. RESPONSIVE LAYER
            ========================================== */
         @media (max-width: 768px) {
             .site-header {
@@ -382,52 +364,17 @@
                 gap: 15px;
                 padding: 15px 20px;
             }
-
             .header-nav {
                 width: 100%;
                 justify-content: space-around;
-                gap: 10px;
+                gap: 5px;
             }
-
             .nav-link {
                 font-size: 11px;
                 min-width: auto;
             }
-
-            .interactive-container {
-                grid-template-columns: 1fr;
-            }
-
-            .selection-sidebar {
-                border-right: none;
-                border-bottom: 4px solid #e0a96d;
-                flex-direction: row;
-                overflow-x: auto;
-                padding: 10px;
-                gap: 10px;
-            }
-
-            .sidebar-btn {
-                white-space: nowrap;
-                padding: 10px 20px;
-                border-radius: 4px;
-                width: auto;
-            }
-
-            .sidebar-btn.active {
-                border-left: none;
-                border-bottom: 2px solid #e0a96d;
-                padding-left: 20px;
-            }
-
-            .display-panel {
-                padding: 25px;
-            }
-
-            .course-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
+            .pipeline-card {
+                padding: 25px 15px;
             }
         }
     </style>
@@ -474,54 +421,163 @@
         
         <div class="portal-intro">
             <h2>Technical Mentorship Matrix</h2>
-            <p>Select an architectural specialized track below to review educational parameters, schedules, and structural components.</p>
+            <p>Tap any specialized field below to view tuition rates, syllabus records, and online class delivery details.</p>
         </div>
 
-        <!-- DYNAMIC CONTROL INTERACTIVE FRAME -->
-        <div class="interactive-container">
+        <!-- SERVICE ACCORDION STACK -->
+        <div class="service-stack">
             
-            <!-- LEFT NAVIGATION SIDEBAR SELECTOR -->
-            <div class="selection-sidebar">
-                <button class="sidebar-btn active" onclick="updateMatrix('webdev', this)">
-                    <i class="fa-solid fa-code"></i> Web Development
+            <!-- SERVICE 1: WEB DEVELOPMENT -->
+            <div class="service-accordion">
+                <button class="accordion-trigger" onclick="toggleService(this)">
+                    <span class="trigger-left"><i class="fa-solid fa-code"></i> Web Development</span>
+                    <i class="fa-solid fa-chevron-down trigger-arrow"></i>
                 </button>
-                <button class="sidebar-btn" onclick="updateMatrix('aiprompts', this)">
-                    <i class="fa-solid fa-microchip"></i> AI Prompts
-                </button>
-                <button class="sidebar-btn" onclick="updateMatrix('wapaxo', this)">
-                    <i class="fa-solid fa-sliders"></i> Wapaxo Development
-                </button>
-                <button class="sidebar-btn" onclick="updateMatrix('monetization', this)">
-                    <i class="fa-solid fa-chart-line"></i> Website Monetization
-                </button>
-                <button class="sidebar-btn" onclick="updateMatrix('vercel', this)">
-                    <i class="fa-solid fa-triangle-exclamation"></i> Vercel Deployment
-                </button>
-                <button class="sidebar-btn" onclick="updateMatrix('netlify', this)">
-                    <i class="fa-solid fa-layer-group"></i> Netlify Deployment
-                </button>
-                <button class="sidebar-btn" onclick="updateMatrix('github', this)">
-                    <i class="fa-brands fa-github"></i> GitHub Mastery
-                </button>
+                <div class="accordion-content">
+                    <div class="content-meta-row">
+                        <span class="meta-price">₦10,000</span>
+                        <span class="meta-delivery"><i class="fa-solid fa-globe"></i> Online Class</span>
+                    </div>
+                    <div class="info-label">Curriculum Details</div>
+                    <ul class="syllabus-list">
+                        <li>HyperText Markup Language (HTML) structural formatting frameworks.</li>
+                        <li>Cascading Style Sheets (CSS) responsive configuration rules.</li>
+                        <li>Professional highly skilled modern design patterns in Web Engineering.</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- RIGHT RUNTIME PANELS DISPLAYING TARGET SELECTION DATA -->
-            <div class="display-panel" id="matrix-display-panel">
-                <!-- Data injection occurs cleanly via the script compilation sequence below -->
+            <!-- SERVICE 2: AI PROMPTS -->
+            <div class="service-accordion">
+                <button class="accordion-trigger" onclick="toggleService(this)">
+                    <span class="trigger-left"><i class="fa-solid fa-microchip"></i> AI Prompts Mastery</span>
+                    <i class="fa-solid fa-chevron-down trigger-arrow"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="content-meta-row">
+                        <span class="meta-price">₦2,000</span>
+                        <span class="meta-delivery"><i class="fa-solid fa-globe"></i> Online Class</span>
+                    </div>
+                    <div class="info-label">Curriculum Details</div>
+                    <ul class="syllabus-list">
+                        <li>Advanced natural language formatting engineering techniques.</li>
+                        <li>Structured logic syntax for generating clean programmatic outputs.</li>
+                        <li>Optimizing context windows and prompt boundaries for explicit targets.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SERVICE 3: WAPAXO DEVELOPMENT -->
+            <div class="service-accordion">
+                <button class="accordion-trigger" onclick="toggleService(this)">
+                    <span class="trigger-left"><i class="fa-solid fa-sliders"></i> Wapaxo Development</span>
+                    <i class="fa-solid fa-chevron-down trigger-arrow"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="content-meta-row">
+                        <span class="meta-price">₦5,000</span>
+                        <span class="meta-delivery"><i class="fa-solid fa-globe"></i> Online Class</span>
+                    </div>
+                    <div class="info-label">Curriculum Details</div>
+                    <ul class="syllabus-list">
+                        <li>Wapaxo script-based execution tags and core system layout logic.</li>
+                        <li>Configuring fully responsive social layer modules in mobile runtime engines.</li>
+                        <li>Data rendering efficiency loops for lightweight mobile configurations.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SERVICE 4: WEBSITE MONETIZATION -->
+            <div class="service-accordion">
+                <button class="accordion-trigger" onclick="toggleService(this)">
+                    <span class="trigger-left"><i class="fa-solid fa-chart-line"></i> Website Monetization</span>
+                    <i class="fa-solid fa-chevron-down trigger-arrow"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="content-meta-row">
+                        <span class="meta-price">₦4,000</span>
+                        <span class="meta-delivery"><i class="fa-solid fa-globe"></i> Online Class</span>
+                    </div>
+                    <div class="info-label">Curriculum Details</div>
+                    <ul class="syllabus-list">
+                        <li>Integrating premium programmatic ad networks safely into web panels.</li>
+                        <li>Setting up custom Get-Paid-To (GPT) payout mechanics.</li>
+                        <li>Maximizing impressions and clean traffic routing blueprints.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SERVICE 5: VERCEL DEPLOYMENT -->
+            <div class="service-accordion">
+                <button class="accordion-trigger" onclick="toggleService(this)">
+                    <span class="trigger-left"><i class="fa-solid fa-triangle-exclamation"></i> Vercel Deployment</span>
+                    <i class="fa-solid fa-chevron-down trigger-arrow"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="content-meta-row">
+                        <span class="meta-price">₦7,000</span>
+                        <span class="meta-delivery"><i class="fa-solid fa-globe"></i> Online Class</span>
+                    </div>
+                    <div class="info-label">Curriculum Details</div>
+                    <ul class="syllabus-list">
+                        <li>Connecting dynamic custom repositories directly to serverless edge functions.</li>
+                        <li>Configuring environmental parameters and Key-Value server storage nodes.</li>
+                        <li>Diagnosing serverless routing errors and deployment logs efficiently.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SERVICE 6: NETLIFY DEPLOYMENT -->
+            <div class="service-accordion">
+                <button class="accordion-trigger" onclick="toggleService(this)">
+                    <span class="trigger-left"><i class="fa-solid fa-layer-group"></i> Netlify Deployment</span>
+                    <i class="fa-solid fa-chevron-down trigger-arrow"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="content-meta-row">
+                        <span class="meta-price">₦8,000</span>
+                        <span class="meta-delivery"><i class="fa-solid fa-globe"></i> Online Class</span>
+                    </div>
+                    <div class="info-label">Curriculum Details</div>
+                    <ul class="syllabus-list">
+                        <li>Automating production deployments straight from standard asset files.</li>
+                        <li>Structuring serverless forms and custom operational endpoint targets.</li>
+                        <li>Managing clean root routing configurations and custom sub-domains.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SERVICE 7: GITHUB MASTERY -->
+            <div class="service-accordion">
+                <button class="accordion-trigger" onclick="toggleService(this)">
+                    <span class="trigger-left"><i class="fa-brands fa-github"></i> GitHub Mastery</span>
+                    <i class="fa-solid fa-chevron-down trigger-arrow"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="content-meta-row">
+                        <span class="meta-price">₦8,000</span>
+                        <span class="meta-delivery"><i class="fa-solid fa-globe"></i> Online Class</span>
+                    </div>
+                    <div class="info-label">Curriculum Details</div>
+                    <ul class="syllabus-list">
+                        <li>Mastering terminal syntax version commands and git log maps.</li>
+                        <li>Branch isolation engineering and handling merge tracking tree conflicts.</li>
+                        <li>Managing safe historical tracking rollbacks without risking source files.</li>
+                    </ul>
+                </div>
             </div>
 
         </div>
 
-        <!-- REVIEWS PIPELINE TO SUBMIT AND GET MANUALLY VERIFIED -->
+        <!-- MENTORSHIP PIPELINE SECTION -->
         <div class="pipeline-card">
             <h3 class="pipeline-title">Mentorship Admission Pipeline</h3>
             <div class="steps-grid">
                 
-                <!-- STEP 1 -->
                 <div class="step-box">
                     <span class="step-number">01</span>
                     <h4 class="step-heading"><i class="fa-solid fa-credit-card"></i> Step 1: Remittance</h4>
-                    <p class="step-desc">Transfer the exact tuition corresponding to your target tract to our billing department:</p>
+                    <p class="step-desc">Transfer the tuition rate matching your chosen course to our administrative office account:</p>
                     <div class="account-details">
                         <p>Bank: <span>OPay</span></p>
                         <p>Acct No: <span>8147318712</span></p>
@@ -529,18 +585,16 @@
                     </div>
                 </div>
 
-                <!-- STEP 2 -->
                 <div class="step-box">
                     <span class="step-number">02</span>
                     <h4 class="step-heading"><i class="fa-solid fa-receipt"></i> Step 2: Verification</h4>
-                    <p class="step-desc">Capture a clear screenshot of your transaction confirmation record showing completion details.</p>
+                    <p class="step-desc">Capture a clear full-screen digital snapshot of your completed transaction confirmation record.</p>
                 </div>
 
-                <!-- STEP 3 -->
                 <div class="step-box">
                     <span class="step-number">03</span>
                     <h4 class="step-heading"><i class="fa-solid fa-paper-plane"></i> Step 3: Dispatch</h4>
-                    <p class="step-desc">Submit your validation ticket to administration. Reach out straight to our official <a href="contact.html" class="action-link">Contact Channels</a> or mail us directly to submit.</p>
+                    <p class="step-desc">Forward your validation picture ticket directly to administration through our official platform channels inside the contact page to receive structural entry approval.</p>
                 </div>
 
             </div>
@@ -550,67 +604,29 @@
 
     <!-- GLOBAL SITE FOOTER -->
     <footer class="site-footer">
-        <p>&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+        <p style="color: #a0aec0; font-size: 13px;">&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
     </footer>
 
-    <!-- INTERACTIVE INJECTION RUNTIME SCRIPTS -->
+    <!-- LIGHTWEIGHT STABLE ACCORDION CONTROLLER SCRIPT -->
     <script>
-        // System Data Structure Store representing your values exactly
-        const dataMatrix = {
-            webdev: {
-                title: "Web Development",
-                price: "₦10,000",
-                schedule: "Structured Online Class Architecture (Live Sessions & Code Analysis Tasks).",
-                syllabus: [
-                    "HyperText Markup Language (HTML) structural formatting frameworks.",
-                    "Cascading Style Sheets (CSS) responsive configuration rules.",
-                    "Professional highly skilled modern software patterns in Web Engineering.",
-                    "Mobile optimization paradigms and fluid element layouts."
-                ]
-            },
-            aiprompts: {
-                title: "AI Prompts Mastery",
-                price: "₦2,000",
-                schedule: "Online Class Schedule (Interactive Workshops & Generation Testing Logs).",
-                syllabus: [
-                    "Advanced natural language formatting engineering techniques.",
-                    "Structured logic programming schemas for deep intelligence parsing.",
-                    "Optimizing prompt layouts for exact code generation results.",
-                    "Integrating automation steps with runtime interface components."
-                ]
-            },
-            wapaxo: {
-                title: "Wapaxo Development",
-                price: "₦5,000",
-                schedule: "Online Class Stream (Mobile CMS Structural Customization Seminars).",
-                syllabus: [
-                    "Wapaxo script-based development structural tags syntax.",
-                    "Deploying mobile-first lightweight custom interface code blocks.",
-                    "Setting up user interactive social layers inside mobile engine spaces.",
-                    "Performance data rendering optimizations tailored for mobile platforms."
-                ]
-            },
-            monetization: {
-                title: "Website Monetization",
-                price: "₦4,000",
-                schedule: "Online Class Schedule (Tuition in Strategic Revenue Architectures).",
-                syllabus: [
-                    "Integrating programmatic digital ad network configurations into sites.",
-                    "Setting up and scaling Get-Paid-To (GPT) platform system code setups.",
-                    "Optimizing click-through traffic conversions via precise placement rules.",
-                    "Traffic preservation mechanics and compliance framework policies."
-                ]
-            },
-            vercel: {
-                title: "Vercel Deployment",
-                price: "₦7,000",
-                schedule: "Online Class Target Labs (Production Deployments & Backend Setup Hooks).",
-                syllabus: [
-                    "Connecting dynamic codebases straight to serverless environments.",
-                    "Configuring Vercel Environment variables and KV database storage channels.",
-                    "Setting up global edge networks, handling analytics logs, and routing rules.",
-                    "Troubleshooting serverless functions runtime system exceptions."
-                ]
-            },
-            netlify: {
-                title: "Netlify D
+        function toggleService(button) {
+            // Get the immediate accordion wrapper element
+            const currentAccordion = button.parentElement;
+            
+            // Check if this card is already opened
+            const isOpen = currentAccordion.classList.contains('active-panel');
+            
+            // Close all items in the stack first to keep UI completely clean
+            document.querySelectorAll('.service-accordion').forEach(item => {
+                item.classList.remove('active-panel');
+            });
+            
+            // If the clicked item wasn't open, open it now!
+            if (!isOpen) {
+                currentAccordion.classList.add('active-panel');
+            }
+        }
+    </script>
+
+</body>
+    </html>
