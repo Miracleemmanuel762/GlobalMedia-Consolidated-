@@ -555,8 +555,8 @@
 
             <!-- Conditional Authentication Buttons (Visible to unauthenticated/unregistered users) -->
             <div class="auth-buttons-container">
-                <a href="sign.html" class="btn-auth signin">Sign In</a>
-                <a href="sign.html" class="btn-auth signup">Sign Up</a>
+                <a href="sign.html" class="home-signin-btn">Sign In</a>
+                <a href="sign.html" class="home-signup-btn">Sign Up</a>
             </div>
         </div>
     </header>
@@ -663,5 +663,20 @@
             <p>&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
         </div>
     </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if the user is already logged in
+        const sessionData = localStorage.getItem('userSession');
+        
+        // Grab your two buttons by their IDs
+        const signInBtn = document.getElementById('home-signin-btn');
+        const signUpBtn = document.getElementById('home-signup-btn');
 
-</bo
+        if (sessionData) {
+            // User is logged in! Hide the buttons completely
+            if (signInBtn) signInBtn.style.display = 'none';
+            if (signUpBtn) signUpBtn.style.display = 'none';
+        }
+    });
+</script></body>
+</html>
