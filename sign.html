@@ -619,7 +619,7 @@
 
                 if (response.ok) {
                     localStorage.setItem('userSession', JSON.stringify(data.user));
-                    window.location.href = 'services.html';
+                    window.location.href = 'welcome.html';
                 } else {
                     alert(data.error || 'Invalid credentials.');
                 }
