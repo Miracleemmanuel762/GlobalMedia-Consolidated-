@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship Portal - GlobalMedia Consolidated</title>
+    <!-- Font Awesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #f4f6f9;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==========================================
+           2. GLOBAL NAVIGATION HEADER
+           ========================================== */
+        .site-header {
+            background-color: #0d1b2a;
+            border-bottom: 3px solid #e0a96d;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #e0a96d;
+        }
+
+        .nav-link:hover i {
+            transform: translateY(-2px);
+        }
+
+        .nav-link.profile-item i {
+            color: #e0a96d;
+            font-size: 22px;
+        }
+
+        /* ==========================================
+           3. PORTAL CORE CONTENT LAYOUT
+           ========================================== */
+        .main-content {
+            flex: 1 0 auto;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .portal-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .portal-intro h2 {
+            color: #0d1b2a;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .portal-intro p {
+            color: #666666;
+            font-size: 16px;
+        }
+
+        /* Interactive Dynamic Section Workspace */
+        .interactive-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            margin-bottom: 50px;
+            border: 1px solid rgba(13, 27, 42, 0.1);
+        }
+
+        /* Sidebar Selector Layer */
+        .selection-sidebar {
+            background-color: #0d1b2a;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            border-right: 4px solid #e0a96d;
+        }
+
+        .sidebar-btn {
+            background: none;
+            border: none;
+            color: #a0aec0;
+            padding: 15px 25px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .sidebar-btn i {
+            font-size: 18px;
+            width: 25px;
+        }
+
+        .sidebar-btn:hover, .sidebar-btn.active {
+            color: #e0a96d;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-btn.active {
+            border-left: 4px solid #e0a96d;
+            padding-left: 21px;
+        }
+
+        /* Dynamic Visual Panel */
+        .display-panel {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .course-header {
+            border-bottom: 2px solid #f4f6f9;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-title {
+            color: #0d1b2a;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .course-price {
+            background-color: rgba(224, 169, 109, 0.15);
+            color: #0d1b2a;
+            border: 1px solid #e0a96d;
+            font-size: 20px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 4px;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .section-label {
+            color: #0d1b2a;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label i {
+            color: #e0a96d;
+        }
+
+        .info-content {
+            color: #555555;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .syllabus-list {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+
+        .syllabus-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+        }
+
+        .syllabus-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #e0a96d;
+            font-size: 12px;
+        }
+
+        /* ==========================================
+           4. PIPELINE APPROVAL STEPS CARD
+           ========================================== */
+        .pipeline-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            border-top: 4px solid #e0a96d;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+        }
+
+        .pipeline-title {
+            color: #0d1b2a;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid rgba(13, 27, 42, 0.05);
+            border-radius: 6px;
+            padding: 25px;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: 800;
+            color: rgba(224, 169, 109, 0.3);
+        }
+
+        .step-heading {
+            color: #0d1b2a;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-heading i {
+            color: #e0a96d;
+        }
+
+        .step-desc {
+            color: #666666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .account-details {
+            margin-top: 10px;
+            background-color: #0d1b2a;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            border: 1px solid #e0a96d;
+        }
+
+        .account-details p span {
+            color: #e0a96d;
+            font-weight: 600;
+        }
+
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #e0a96d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .action-link:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* ==========================================
+           5. GLOBAL SITE FOOTER
+           ========================================== */
+        .site-footer {
+            background-color: #0d1b2a;
+            border-top: 3px solid #e0a96d;
+            color: #ffffff;
+            padding: 20px 40px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .site-footer p {
+            color: #a0aec0;
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           6. RESPONSIVE DESIGN LAYER (MOBILE)
+           ========================================== */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 10px;
+            }
+
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+
+            .interactive-container {
+                grid-template-columns: 1fr;
+            }
+
+            .selection-sidebar {
+                border-right: none;
+                border-bottom: 4px solid #e0a96d;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .sidebar-btn {
+                white-space: nowrap;
+                padding: 10px 20px;
+                border-radius: 4px;
+                width: auto;
+            }
+
+            .sidebar-btn.active {
+                border-left: none;
+                border-bottom: 2px solid #e0a96d;
+                padding-left: 20px;
+            }
+
+            .display-panel {
+                padding: 25px;
+            }
+
+            .course-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="header-brand">
+            <img src="https://i.postimg.cc/W1YC1hyC/ei-1784317566335-removebg-preview-(1).png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="notification.html" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link profile-item">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- CORE WORKSPACE FRAME -->
+    <main class="main-content">
+        
+        <div class="portal-intro">
+            <h2>Technical Mentorship Matrix</h2>
+            <p>Select an architectural specialized track below to review educational parameters, schedules, and structural components.</p>
+        </div>
+
+        <!-- DYNAMIC CONTROL INTERACTIVE FRAME -->
+        <div class="interactive-container">
+            
+            <!-- LEFT NAVIGATION SIDEBAR SELECTOR -->
+            <div class="selection-sidebar">
+                <button class="sidebar-btn active" onclick="updateMatrix('webdev', this)">
+                    <i class="fa-solid fa-code"></i> Web Development
+                </button>
+                <button class="sidebar-btn" onclick="updateMatrix('aiprompts', this)">
+                    <i class="fa-solid fa-microchip"></i> AI Prompts
+                </button>
+                <button class="sidebar-btn" onclick="updateMatrix('wapaxo', this)">
+                    <i class="fa-solid fa-sliders"></i> Wapaxo Development
+                </button>
+                <button class="sidebar-btn" onclick="updateMatrix('monetization', this)">
+                    <i class="fa-solid fa-chart-line"></i> Website Monetization
+                </button>
+                <button class="sidebar-btn" onclick="updateMatrix('vercel', this)">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Vercel Deployment
+                </button>
+                <button class="sidebar-btn" onclick="updateMatrix('netlify', this)">
+                    <i class="fa-solid fa-layer-group"></i> Netlify Deployment
+                </button>
+                <button class="sidebar-btn" onclick="updateMatrix('github', this)">
+                    <i class="fa-brands fa-github"></i> GitHub Mastery
+                </button>
+            </div>
+
+            <!-- RIGHT RUNTIME PANELS DISPLAYING TARGET SELECTION DATA -->
+            <div class="display-panel" id="matrix-display-panel">
+                <!-- Data injection occurs cleanly via the script compilation sequence below -->
+            </div>
+
+        </div>
+
+        <!-- REVIEWS PIPELINE TO SUBMIT AND GET MANUALLY VERIFIED -->
+        <div class="pipeline-card">
+            <h3 class="pipeline-title">Mentorship Admission Pipeline</h3>
+            <div class="steps-grid">
+                
+                <!-- STEP 1 -->
+                <div class="step-box">
+                    <span class="step-number">01</span>
+                    <h4 class="step-heading"><i class="fa-solid fa-credit-card"></i> Step 1: Remittance</h4>
+                    <p class="step-desc">Transfer the exact tuition corresponding to your target tract to our billing department:</p>
+                    <div class="account-details">
+                        <p>Bank: <span>OPay</span></p>
+                        <p>Acct No: <span>8147318712</span></p>
+                        <p>Name: <span>Miracle Emmanuel</span></p>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="step-box">
+                    <span class="step-number">02</span>
+                    <h4 class="step-heading"><i class="fa-solid fa-receipt"></i> Step 2: Verification</h4>
+                    <p class="step-desc">Capture a clear screenshot of your transaction confirmation record showing completion details.</p>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="step-box">
+                    <span class="step-number">03</span>
+                    <h4 class="step-heading"><i class="fa-solid fa-paper-plane"></i> Step 3: Dispatch</h4>
+                    <p class="step-desc">Submit your validation ticket to administration. Reach out straight to our official <a href="contact.html" class="action-link">Contact Channels</a> or mail us directly to submit.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="site-footer">
+        <p>&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+    </footer>
+
+    <!-- INTERACTIVE INJECTION RUNTIME SCRIPTS -->
+    <script>
+        // System Data Structure Store representing your values exactly
+        const dataMatrix = {
+            webdev: {
+                title: "Web Development",
+                price: "₦10,000",
+                schedule: "Structured Online Class Architecture (Live Sessions & Code Analysis Tasks).",
+                syllabus: [
+                    "HyperText Markup Language (HTML) structural formatting frameworks.",
+                    "Cascading Style Sheets (CSS) responsive configuration rules.",
+                    "Professional highly skilled modern software patterns in Web Engineering.",
+                    "Mobile optimization paradigms and fluid element layouts."
+                ]
+            },
+            aiprompts: {
+                title: "AI Prompts Mastery",
+                price: "₦2,000",
+                schedule: "Online Class Schedule (Interactive Workshops & Generation Testing Logs).",
+                syllabus: [
+                    "Advanced natural language formatting engineering techniques.",
+                    "Structured logic programming schemas for deep intelligence parsing.",
+                    "Optimizing prompt layouts for exact code generation results.",
+                    "Integrating automation steps with runtime interface components."
+                ]
+            },
+            wapaxo: {
+                title: "Wapaxo Development",
+                price: "₦5,000",
+                schedule: "Online Class Stream (Mobile CMS Structural Customization Seminars).",
+                syllabus: [
+                    "Wapaxo script-based development structural tags syntax.",
+                    "Deploying mobile-first lightweight custom interface code blocks.",
+                    "Setting up user interactive social layers inside mobile engine spaces.",
+                    "Performance data rendering optimizations tailored for mobile platforms."
+                ]
+            },
+            monetization: {
+                title: "Website Monetization",
+                price: "₦4,000",
+                schedule: "Online Class Schedule (Tuition in Strategic Revenue Architectures).",
+                syllabus: [
+                    "Integrating programmatic digital ad network configurations into sites.",
+                    "Setting up and scaling Get-Paid-To (GPT) platform system code setups.",
+                    "Optimizing click-through traffic conversions via precise placement rules.",
+                    "Traffic preservation mechanics and compliance framework policies."
+                ]
+            },
+            vercel: {
+                title: "Vercel Deployment",
+                price: "₦7,000",
+                schedule: "Online Class Target Labs (Production Deployments & Backend Setup Hooks).",
+                syllabus: [
+                    "Connecting dynamic codebases straight to serverless environments.",
+                    "Configuring Vercel Environment variables and KV database storage channels.",
+                    "Setting up global edge networks, handling analytics logs, and routing rules.",
+                    "Troubleshooting serverless functions runtime system exceptions."
+                ]
+            },
+            netlify: {
+                title: "Netlify D
