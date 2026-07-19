@@ -604,4 +604,151 @@
 
             <!-- EMAIL DISPATCH CONTROLLER LAYER -->
             <form onsubmit="dispatchPartnershipEmail(event)">
-           
+                
+                <div class="form-group">
+                    <label class="form-label" for="applicantName">Full Legal Name</label>
+                    <input type="text" id="applicantName" class="input-field" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="applicantEmail">Contact Email Address</label>
+                    <input type="email" id="applicantEmail" class="input-field" placeholder="Enter your active email" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="partnerRole">Desired Engagement Track</label>
+                    <select id="partnerRole" class="select-input" required>
+                        <option value="" disabled selected>Select your target role</option>
+                        <option value="Mentorship Instructor (50% Split)">Mentorship Instructor (50% Revenue Share)</option>
+                        <option value="Operational Staff Member (Performance Monthly Pay)">Operational Staff Member (Subscription Salary)</option>
+                        <option value="Advertising Partner (WhatsApp Deal)">Advertising Partner</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="skillCategory">Primary Domain Expertise</label>
+                    <select id="skillCategory" class="select-input" required>
+                        <option value="" disabled selected>Select your core skill domain</option>
+                        <option value="Web Development & Server Infrastructures">Web Development & Server Systems</option>
+                        <option value="Graphic Design & Visual Brand Communication">Graphic Design & Creative Layouts</option>
+                        <option value="Financial Markets & Asset Trading">Financial Markets & Asset Trading</option>
+                        <option value="Digital Marketing & Content Copywriting">Digital Marketing & Growth Copy</option>
+                        <option value="Catering & Hospitality Services">Catering & Hospitality Arts</option>
+                        <option value="Other Technological or Remote Skills Done Online">Other Online / Remote Digital Skills</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="qualifications">Professional Qualifications & Skill Summary</label>
+                    <textarea id="qualifications" class="textarea-input" placeholder="Outline your domain experience, technical skill levels, and why you want to become part of GlobalMedia Consolidated..." required></textarea>
+                </div>
+
+                <div class="submit-btn-row">
+                    <button type="submit" class="btn-submit">Dispatch Application</button>
+                </div>
+
+            </form>
+        </section>
+
+    </main>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="site-footer">
+        <p style="color: #a0aec0; font-size: 13px;">&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS LAYER -->
+    <script>
+        const BASE_REF_URL = "https://globalmedia-consolidated.vercel.app/refer.html";
+
+        // Pull user data from localStorage and initialize systems
+        window.addEventListener('DOMContentLoaded', () => {
+            // Scans localStorage for user's profile configuration settings
+            const storedName = localStorage.getItem("gm_profile_name"); 
+            const nameInput = document.getElementById('referrerName');
+            const linkDisplay = document.getElementById('linkOutput');
+            const alertText = document.getElementById('referralStatusMessage');
+
+            if (storedName && storedName.trim() !== "") {
+                nameInput.value = storedName;
+                const encoded = encodeURIComponent(storedName);
+                linkDisplay.textContent = `${BASE_REF_URL}?ref=${encoded}`;
+            } else {
+                // If completely clear/anonymous visitor context, force register warning
+                nameInput.value = "";
+                nameInput.placeholder = "Account not detected";
+                linkDisplay.textContent = `${BASE_REF_URL}?ref=Visitor`;
+                alertText.style.display = "block"; 
+            }
+        });
+
+        // Advanced secure system script fallback to handle clean clipboard copying
+        function copyGeneratedLink() {
+            const linkDisplay = document.getElementById('linkOutput');
+            const originalText = linkDisplay.textContent;
+
+            // Strategy A: Modern Async Clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(originalText)
+                    .then(() => alert("Referral link successfully copied to clipboard!"))
+                    .catch(err => fallbackCopyEngine(originalText));
+            } else {
+                fallbackCopyEngine(originalText);
+            }
+        }
+
+        // Strategy B: Legacy document selection fallback engine
+        function fallbackCopyEngine(textValue) {
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = textValue;
+            tempTextArea.style.position = "fixed"; // Avoid scrolling page
+            document.body.appendChild(tempTextArea);
+            tempTextArea.focus();
+            tempTextArea.select();
+            
+            try {
+                const checkedStatus = document.execCommand('copy');
+                if (checkedStatus) {
+                    alert("Referral link copied via fallback system engine!");
+                } else {
+                    alert("Failed to copy link. Please highlight and copy manually.");
+                }
+            } catch (err) {
+                alert("Browser security settings blocked programmatic copy features.");
+            }
+            document.body.removeChild(tempTextArea);
+        }
+
+        // Form pipeline to fix mailto data loss bugs
+        function dispatchPartnershipEmail(event) {
+            event.preventDefault(); // Stop raw submission
+
+            const name = document.getElementById('applicantName').value;
+            const email = document.getElementById('applicantEmail').value;
+            const role = document.getElementById('partnerRole').value;
+            const skill = document.getElementById('skillCategory').value;
+            const qualifications = document.getElementById('qualifications').value;
+
+            const businessEmail = "globalmediaconsolidated@gmail.com";
+            const emailSubject = encodeURIComponent(`Partnership Application: ${name} (${role})`);
+            
+            // Build the body data string explicitly to bypass browser form parsing bugs
+            let emailBody = `GLOBALMEDIA CONSOLIDATED PARTNERSHIP RECORD\n`;
+            emailBody += `==============================================\n\n`;
+            emailBody += `Applicant Name: ${name}\n`;
+            emailBody += `Contact Email: ${email}\n`;
+            emailBody += `Target Track: ${role}\n`;
+            emailBody += `Skill Category Focus: ${skill}\n\n`;
+            emailBody += `Professional Qualifications Summary:\n`;
+            emailBody += `${qualifications}\n\n`;
+            emailBody += `==============================================\n`;
+            emailBody += `Note: To finalize this submission, please remember to connect with administration on WhatsApp via 07044382288.`;
+
+            const encodedBody = encodeURIComponent(emailBody);
+
+            // Open native device mailing client passing all custom data vectors cleanly
+            window.location.href = `mailto:${businessEmail}?subject=${emailSubject}&body=${encodedBody}`;
+        }
+    </script>
+</body>
+                        </html>
