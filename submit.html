@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Submission - GlobalMedia Consolidated</title>
+    <!-- Font Awesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #f4f6f9;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==========================================
+           2. GLOBAL NAVIGATION HEADER
+           ========================================== */
+        .site-header {
+            background-color: #0d1b2a;
+            border-bottom: 3px solid #e0a96d;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #e0a96d;
+        }
+
+        /* ==========================================
+           3. SUBMISSION FORM LAYOUT
+           ========================================== */
+        .main-content {
+            flex: 1 0 auto;
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .form-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #0d1b2a;
+            padding: 40px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            color: #0d1b2a;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background-color: #fff4e5;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .warning-banner i {
+            color: #ff9800;
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        .warning-banner p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        /* Form Elements */
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #0d1b2a;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .custom-select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid rgba(13, 27, 42, 0.1);
+            border-radius: 6px;
+            font-size: 15px;
+            color: #333;
+            background-color: #f8fafc;
+            outline: none;
+            transition: border-color 0.3s ease;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%230d1b2a%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px top 50%;
+            background-size: 12px auto;
+        }
+
+        .custom-select:focus {
+            border-color: #e0a96d;
+        }
+
+        /* File Upload Styling */
+        .file-upload-wrapper {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            border: 2px dashed rgba(13, 27, 42, 0.2);
+            border-radius: 6px;
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-upload-wrapper:hover {
+            border-color: #e0a96d;
+            background-color: rgba(224, 169, 109, 0.05);
+        }
+
+        .file-upload-wrapper i {
+            font-size: 30px;
+            color: #a0aec0;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .file-upload-wrapper:hover i {
+            color: #e0a96d;
+        }
+
+        .file-upload-wrapper p {
+            font-size: 14px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .file-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* File name display */
+        .file-name-display {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #2ec4b6;
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #0d1b2a;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(13, 27, 42, 0.2);
+        }
+
+        .submit-btn:hover {
+            background-color: #1a365d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(13, 27, 42, 0.3);
+        }
+
+        .submit-btn i {
+            color: #25D366; /* WhatsApp Green */
+            font-size: 20px;
+        }
+
+        /* ==========================================
+           4. GLOBAL SITE FOOTER
+           ========================================== */
+        .site-footer {
+            background-color: #0d1b2a;
+            border-top: 3px solid #e0a96d;
+            color: #ffffff;
+            padding: 20px 40px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* ==========================================
+           5. RESPONSIVE LAYER
+           ========================================== */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 5px;
+            }
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+            .form-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="header-brand">
+            <img src="https://i.postimg.cc/W1YC1hyC/ei-1784317566335-removebg-preview-(1).png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="notification.html" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- CORE WORKSPACE FRAME -->
+    <main class="main-content">
+        
+        <div class="form-card">
+            <div class="form-header">
+                <h2>Verification Dispatch</h2>
+                <p>Upload your remittance evidence to activate your subscription framework.</p>
+            </div>
+
+            <!-- CRITICAL WARNING BANNER -->
+            <div class="warning-banner">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p><strong>ATTENTION:</strong> Ensure you select the <em>exact</em> service you paid for from the dropdown below. Selecting an incorrect trajectory will cause verification failures and delay your administrative approval.</p>
+            </div>
+
+            <form id="dispatchForm" onsubmit="routeToWhatsApp(event)">
+                
+                <!-- SELECT SERVICE DROPDOWN -->
+                <div class="input-group">
+                    <label for="serviceSelect">Target Subscribed Service</label>
+                    <select id="serviceSelect" class="custom-select" required>
+                        <option value="" disabled selected>-- Select Your Authorized Course --</option>
+                        <option value="Web Development (₦10,000)">Web Development (₦10,000)</option>
+                        <option value="AI Prompts Mastery (₦2,000)">AI Prompts Mastery (₦2,000)</option>
+                        <option value="Wapaxo Development (₦5,000)">Wapaxo Development (₦5,000)</option>
+                        <option value="Website Monetization (₦4,000)">Website Monetization (₦4,000)</option>
+                        <option value="Vercel Deployment (₦7,000)">Vercel Deployment (₦7,000)</option>
+                        <option value="Netlify Deployment (₦8,000)">Netlify Deployment (₦8,000)</option>
+                        <option value="GitHub Mastery (₦8,000)">GitHub Mastery (₦8,000)</option>
+                    </select>
+                </div>
+
+                <!-- IMAGE UPLOAD -->
+                <div class="input-group">
+                    <label>Remittance Screenshot (Image)</label>
+                    <div class="file-upload-wrapper">
+                        <i class="fa-solid fa-image"></i>
+                        <p>Tap here to browse for your receipt image</p>
+                        <input type="file" id="receiptUpload" class="file-input" accept="image/*" required onchange="displayFileName(this)">
+                    </div>
+                    <div id="fileName" class="file-name-display"><i class="fa-solid fa-check"></i> Image Secured</div>
+                </div>
+
+                <!-- SUBMIT TO WHATSAPP ROUTER -->
+                <button type="submit" class="submit-btn">
+                    <i class="fa-brands fa-whatsapp"></i> Dispatch to Administration
+                </button>
+
+            </form>
+        </div>
+
+    </main>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="site-footer">
+        <p style="color: #a0aec0; font-size: 13px;">&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+    </footer>
+
+    <!-- LOGIC SYSTEM SCRIPTS -->
+    <script>
+        // Visually confirm file selection to the user
+        function displayFileName(input) {
+            const displayArea = document.getElementById('fileName');
+            if (input.files && input.files.length > 0) {
+                displayArea.style.display = 'block';
+                displayArea.innerHTML = `<i class="fa-solid fa-check"></i> Selected: ${input.files[0].name}`;
+            } else {
+                displayArea.style.display = 'none';
+            }
+        }
+
+        // WhatsApp Routing Engine
+        function routeToWhatsApp(event) {
+            // Prevent the form from trying to submit to a standard server
+            event.preventDefault();
+
+            // Extract User Data
+            const service = document.getElementById('serviceSelect').value;
+            const fileInput = document.getElementById('receiptUpload').files[0];
+
+            if(!service || !fileInput) {
+                alert("Please ensure both a service is selected and a photo is uploaded.");
+                return;
+            }
+
+            // Construct the strictly formatted message for WhatsApp
+            const targetPhone = "2347044382288";
+            
+            const message = `*GlobalMedia Verification Ticket*%0A%0AHello Administration, I am submitting my official remittance data for approval.%0A%0A*Target Service:* ${service}%0A%0A_Note: I am attaching my payment screenshot to this chat right now._`;
+
+            // Build API Link
+            const whatsappURL = `https://wa.me/${targetPhone}?text=${message}`;
+
+            // Provide final prompt before redirecting
+            alert("Routing to WhatsApp! Please remember to click the 'Attachment' (paperclip/camera) icon inside the WhatsApp chat to send the photo you just selected.");
+
+            // Execute Redirect
+            window.location.href = whatsappURL;
+        }
+    </script>
+
+</body>
+</html>
