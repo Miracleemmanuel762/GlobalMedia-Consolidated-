@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts & Notifications - GlobalMedia Consolidated</title>
+    <!-- Font Awesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #f4f6f9;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==========================================
+           2. GLOBAL NAVIGATION HEADER
+           ========================================== */
+        .site-header {
+            background-color: #0d1b2a;
+            border-bottom: 3px solid #e0a96d;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #e0a96d;
+        }
+
+        /* ==========================================
+           3. NOTIFICATION INTERFACE LAYOUT
+           ========================================== */
+        .main-content {
+            flex: 1 0 auto;
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .notification-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            padding: 50px 40px;
+            text-align: center;
+            border-top: 5px solid #0d1b2a;
+        }
+
+        /* Empty State Graphic Ring */
+        .bell-ring-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background-color: #f8fafc;
+            border: 2px dashed rgba(13, 27, 42, 0.15);
+            border-radius: 50%;
+            margin: 0 auto 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bell-ring-container i {
+            font-size: 50px;
+            color: #a0aec0;
+        }
+
+        .status-heading {
+            color: #0d1b2a;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 0.2px;
+        }
+
+        .status-description {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Promotional Welcome Billboard */
+        .brand-billboard {
+            background-color: #0d1b2a;
+            background-image: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+            color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #e0a96d;
+            text-align: left;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 15px rgba(13, 27, 42, 0.1);
+        }
+
+        .billboard-title {
+            color: #e0a96d;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .billboard-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        /* Routing Utilities */
+        .action-control-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .utility-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dark {
+            background-color: #0d1b2a;
+            color: #ffffff;
+            border: 1px solid #0d1b2a;
+        }
+
+        .btn-dark:hover {
+            background-color: transparent;
+            color: #0d1b2a;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #555555;
+            border: 1px solid rgba(13, 27, 42, 0.2);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(13, 27, 42, 0.05);
+            color: #0d1b2a;
+            border-color: #0d1b2a;
+        }
+
+        /* ==========================================
+           4. GLOBAL SITE FOOTER
+           ========================================== */
+        .site-footer {
+            background-color: #0d1b2a;
+            border-top: 3px solid #e0a96d;
+            color: #ffffff;
+            padding: 20px 40px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* ==========================================
+           5. RESPONSIVE LAYER
+           ========================================== */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 5px;
+            }
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+            .notification-card {
+                padding: 35px 20px;
+            }
+            .action-control-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .utility-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="header-brand">
+            <img src="https://i.postimg.cc/W1YC1hyC/ei-1784317566335-removebg-preview-(1).png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="notification.html" class="nav-link active">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- CORE WORKSPACE FRAME -->
+    <main class="main-content">
+        
+        <div class="notification-card">
+            
+            <!-- EMPTY NOTIFICATION STATE ART -->
+            <div class="bell-ring-container">
+                <i class="fa-regular fa-bell-slash"></i>
+            </div>
+
+            <!-- CORE MESSAGING -->
+            <h2 class="status-heading">All Caught Up!</h2>
+            <p class="status-description">
+                There are no new notifications for now. We will update this hub the moment system activities, digital rewards, or platform announcements occur.
+            </p>
+
+            <!-- HIGH VALUE BRAND ACCENT PANEL -->
+            <div class="brand-billboard">
+                <h3 class="billboard-title">
+                    <i class="fa-solid fa-heart"></i> Welcome to the Hub
+                </h3>
+                <p class="billboard-text">
+                    Whether you are developing next-generation code pipelines, checking status reports, or expanding your digital horizons, remember that <strong>GlobalMedia Consolidated is a good place to stay!</strong> We are dedicated to building reliable digital infrastructures just for you.
+                </p>
+            </div>
+
+            <!-- NAVIGATION QUICK ACTIONS -->
+            <div class="action-control-row">
+                <a href="dashboard.html" class="utility-btn btn-dark">
+                    <i class="fa-solid fa-chart-pie"></i> Go to Dashboard
+                </a>
+                <a href="profile.html" class="utility-btn btn-outline">
+                    <i class="fa-solid fa-user-gear"></i> Manage Profile
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="site-footer">
+        <p style="color: #a0aec0; font-size: 13px;">&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+    </footer>
+
+</body>
+      </html>
