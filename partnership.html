@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Partnership Matrix - GlobalMedia Consolidated</title>
+    <!-- Font Awesome for Enterprise Grade Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. CORE ARCHITECTURE & SYSTEM RESET
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #f4f6f9;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            scroll-behavior: smooth;
+        }
+
+        /* ==========================================
+           2. GLOBAL NAVIGATION HEADER
+           ========================================== */
+        .site-header {
+            background-color: #0d1b2a;
+            border-bottom: 3px solid #e0a96d;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #e0a96d;
+        }
+
+        /* ==========================================
+           3. HERO WORKSPACE & GRID MODULES
+           ========================================== */
+        .hero-banner {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 4px solid #e0a96d;
+        }
+
+        .hero-banner h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-banner p {
+            color: #e2e8f0;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Program Pillar Blocks */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .program-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #0d1b2a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .program-card.accent-border {
+            border-top-color: #e0a96d;
+        }
+
+        .card-icon {
+            font-size: 35px;
+            color: #0d1b2a;
+            margin-bottom: 15px;
+        }
+
+        .program-card.accent-border .card-icon {
+            color: #e0a96d;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0d1b2a;
+            margin-bottom: 12px;
+        }
+
+        .card-text {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .feature-badge {
+            background-color: #f1f5f9;
+            color: #0d1b2a;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Early-Bird System Alert Warning Box */
+        .alert-box {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-left: 4px solid #f59e0b;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .alert-box i {
+            font-size: 20px;
+            color: #d97706;
+            margin-top: 2px;
+        }
+
+        .alert-title {
+            font-weight: 700;
+            color: #78350f;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .alert-text {
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.5;
+        }
+
+        /* ==========================================
+           4. DYNAMIC LINK GENERATOR ENGINE
+           ========================================== */
+        .referral-engine-box {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            border-left: 5px solid #2ec4b6;
+        }
+
+        .engine-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0d1b2a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .engine-inputs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #0d1b2a;
+        }
+
+        .btn-action {
+            background-color: #0d1b2a;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn-action:hover {
+            background-color: #1b263b;
+        }
+
+        .output-link-container {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: monospace;
+            font-size: 13px;
+            color: #334155;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: #2ec4b6;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0 10px;
+        }
+
+        /* Verification Steps Checklist */
+        .validation-steps {
+            margin-top: 20px;
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .validation-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0d1b2a;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 10px;
+            font-size: 13.5px;
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-item i {
+            color: #2ec4b6;
+            margin-top: 3px;
+        }
+
+        /* ==========================================
+           5. APPLICATION INBOX EMAIL FORM
+           ========================================== */
+        .form-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            border-top: 5px solid #0d1b2a;
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-header h3 {
+            font-size: 24px;
+            color: #0d1b2a;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #0d1b2a;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .select-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: white;
+            outline: none;
+            color: #333333;
+        }
+
+        .textarea-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            min-height: 120px;
+            resize: vertical;
+            outline: none;
+        }
+
+        .submit-btn-row {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-submit {
+            background-color: #0d1b2a;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(13, 27, 42, 0.2);
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-submit:hover {
+            background-color: #1b263b;
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================
+           6. GLOBAL SITE FOOTER
+           ========================================== */
+        .site-footer {
+            background-color: #0d1b2a;
+            border-top: 3px solid #e0a96d;
+            color: #ffffff;
+            padding: 20px 40px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* ==========================================
+           7. RESPONSIVE MEDIA HOOKS
+           ========================================== */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 5px;
+            }
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+            .hero-banner {
+                padding: 40px 15px;
+            }
+            .hero-banner h2 {
+                font-size: 26px;
+            }
+            .engine-inputs {
+                flex-direction: column;
+            }
+            .form-section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="header-brand">
+            <img src="https://i.postimg.cc/W1YC1hyC/ei-1784317566335-removebg-preview-(1).png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="notification.html" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- HERO BANNER WRAP -->
+    <section class="hero-banner">
+        <h2>Global Partnership Matrix</h2>
+        <p>Monetize your expertise and network. We specialize in scaling <strong>any digital or online skill</strong>—from software engineering and web systems to design, digital marketing, trading, and remote services.</p>
+    </section>
+
+    <!-- MAIN CORE CONTAINER -->
+    <main class="main-container">
+
+        <!-- EARLY BIRD DISCOUNT NOTICE SYSTEM -->
+        <div class="alert-box">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <div>
+                <div class="alert-title">Early-Stage System Notice: Current Rate Adjustments</div>
+                <div class="alert-text">As GlobalMedia Consolidated has newly launched, all mentorship subscription programs are set to a baseline discount price. Fees are scheduled to scale upwards incrementally as the platform expands. Securing your partner channels now locks in early-stage distribution benefits.</div>
+            </div>
+        </div>
+
+        <!-- THREE PILLAR ARCHITECTURE GRID -->
+        <section class="program-grid">
+            
+            <!-- PILLAR 1: MENTORSHIP -->
+            <div class="program-card">
+                <i class="fa-solid fa-chalkboard-user card-icon"></i>
+                <h3 class="card-title">Mentorship Faculty</h3>
+                <div class="feature-badge"><i class="fa-solid fa-percentage"></i> 50% Revenue Share</div>
+                <p class="card-text">Apply as an official instructor. Onboard users under our learning structures and command a clean 50% cut of all direct student mentorship subscription fees.</p>
+            </div>
+
+            <!-- PILLAR 2: STAFF CORPS -->
+            <div class="program-card accent-border">
+                <i class="fa-solid fa-user-tie card-icon"></i>
+                <h3 class="card-title">Staff Operations</h3>
+                <div class="feature-badge"><i class="fa-solid fa-calendar-check"></i> Monthly Pay Structure</div>
+                <p class="card-text">Become an official operational staff member. Staff structures are remunerated monthly on a performance scale mapped directly to new platform service subscriptions.</p>
+            </div>
+
+            <!-- PILLAR 3: REFERRALS & ADS -->
+            <div class="program-card">
+                <i class="fa-solid fa-rectangle-ad card-icon"></i>
+                <h3 class="card-title">Affiliates & Advertisers</h3>
+                <div class="feature-badge"><i class="fa-solid fa-share-nodes"></i> 30% Referral Payout</div>
+                <p class="card-text">Drive user growth via custom channels. Earn a high-tier 30% commission for every successful premium account referral. Custom advertisement partnerships require clear operational validation.</p>
+            </div>
+
+        </section>
+
+        <!-- DYNAMIC LINK GENERATOR ENGINE INTERFACE -->
+        <section class="referral-engine-box">
+            <h3 class="engine-title"><i class="fa-solid fa-link"></i> Custom Referral Link Generator</h3>
+            <div class="engine-inputs">
+                <input type="text" id="referrerName" class="input-field" placeholder="Enter Your Full Name (e.g., John Doe)" oninput="generateAffiliateLink()">
+                <button type="button" class="btn-action" onclick="copyGeneratedLink()"><i class="fa-solid fa-copy"></i> Copy Link</button>
+            </div>
+            <div class="output-link-container">
+                <span id="linkOutput">https://globalmedia-consolidated.vercel.app/refer.html?ref=YourName</span>
+            </div>
+
+            <!-- CLEAR CRITICAL TRANSACTION INSTRUCTIONS -->
+            <div class="validation-steps">
+                <div class="validation-title"><i class="fa-solid fa-shield-halved"></i> Crucial Transaction Validation Workflow</div>
+                <div class="step-item">
+                    <i class="fa-solid fa-circle-right"></i>
+                    <span><strong>Step 1:</strong> Share your custom-generated link with the target customer. Ensure your name is correctly embedded in the URL parameters.</span>
+                </div>
+                <div class="step-item">
+                    <i class="fa-solid fa-circle-right"></i>
+                    <span><strong>Step 2:</strong> The referrer must instantly reach out to our primary desk on WhatsApp at <a href="https://wa.me/2347044382288" style="color:#2ec4b6; text-decoration:none; font-weight:700;">07044382288</a> to provide absolute data clarity on the incoming transaction.</span>
+                </div>
+                <div class="step-item">
+                    <i class="fa-solid fa-circle-right"></i>
+                    <span><strong>Step 3:</strong> The referred customer must also contact us via the same secure node to validate the sign-up. Once fully cross-reviewed, the 30% bonus transfers immediately into your registered payout account.</span>
+                </div>
+                <div class="step-item" style="margin-top: 15px; border-top: 1px solid #e2e8f0; padding-top: 10px;">
+                    <i class="fa-solid fa-bullhorn" style="color:#e0a96d;"></i>
+                    <span><strong>Advertiser Integration:</strong> If you seek to deploy standalone advertisement frameworks for GlobalMedia Consolidated, you are strictly required to contact the administration line directly to align tracking strategies and ensure transparent clearance metrics.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURE MAIL FORM SECTION -->
+        <section class="form-section" id="application-form">
+            <div class="form-header">
+                <h3>Submit Partnership Application</h3>
+                <p>Complete the secure profile index below. Data routes directly into the central evaluation desk.</p>
+            </div>
+
+            <!-- EMAIL ACTIONS THROUGH CENTRALIZED FORM ENGINES -->
+            <form action="mailto:globalmediaconsolidated@gmail.com" method="post" enctype="text/plain">
+                
+                <div class="form-group">
+                    <label class="form-label" for="applicantName">Full Legal Name</label>
+                    <input type="text" id="applicantName" name="Applicant Name" class="input-field" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group"
