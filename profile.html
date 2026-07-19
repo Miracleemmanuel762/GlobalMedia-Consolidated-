@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - GlobalMedia Consolidated</title>
+    <!-- Font Awesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==========================================
+           1. RESET & BASE STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #f4f6f9;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ==========================================
+           2. GLOBAL NAVIGATION HEADER
+           ========================================== */
+        .site-header {
+            background-color: #0d1b2a;
+            border-bottom: 3px solid #e0a96d;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .site-name {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .site-name span {
+            color: #e0a96d;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #e0a96d;
+        }
+
+        /* ==========================================
+           3. PROFILE CARD LAYOUT
+           ========================================== */
+        .main-content {
+            flex: 1 0 auto;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .profile-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            border-top: 5px solid #0d1b2a;
+        }
+
+        /* Avatar System Wrap */
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px auto;
+        }
+
+        .avatar-preview {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #f4f6f9;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #e2e8f0;
+        }
+
+        .file-label-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: #0d1b2a;
+            color: #e0a96d;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid #ffffff;
+        }
+
+        .file-label-btn:hover {
+            transform: scale(1.1);
+            background-color: #e0a96d;
+            color: #0d1b2a;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+
+        /* Meta Text Fields */
+        .user-name {
+            color: #0d1b2a;
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .user-role {
+            color: #e0a96d;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .info-divider {
+            height: 1px;
+            background: rgba(13, 27, 42, 0.08);
+            margin: 20px 0;
+        }
+
+        /* Profile Details Fields */
+        .details-box {
+            background-color: #f8fafc;
+            border: 1px solid rgba(13, 27, 42, 0.05);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row i {
+            font-size: 18px;
+            color: #0d1b2a;
+            width: 25px;
+            text-align: center;
+        }
+
+        .info-content label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #a0aec0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .info-content span {
+            font-size: 15px;
+            color: #333333;
+            font-weight: 600;
+        }
+
+        /* Strategic Action Links */
+        .action-links-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .route-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #0d1b2a;
+            color: #ffffff;
+            border: 1px solid #0d1b2a;
+            box-shadow: 0 4px 12px rgba(13, 27, 42, 0.15);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: #0d1b2a;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #555555;
+            border: 1px solid rgba(13, 27, 42, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(13, 27, 42, 0.05);
+            color: #0d1b2a;
+            border-color: #0d1b2a;
+        }
+
+        /* Status notification toast */
+        .status-toast {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: #2ec4b6;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 2000;
+        }
+
+        .status-toast.show-toast {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ==========================================
+           4. GLOBAL SITE FOOTER
+           ========================================== */
+        .site-footer {
+            background-color: #0d1b2a;
+            border-top: 3px solid #e0a96d;
+            color: #ffffff;
+            padding: 20px 40px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* ==========================================
+           5. RESPONSIVE LAYER
+           ========================================== */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .header-nav {
+                width: 100%;
+                justify-content: space-around;
+                gap: 5px;
+            }
+            .nav-link {
+                font-size: 11px;
+                min-width: auto;
+            }
+            .profile-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="header-brand">
+            <img src="https://i.postimg.cc/W1YC1hyC/ei-1784317566335-removebg-preview-(1).png" alt="GM Logo" class="header-logo">
+            <h1 class="site-name">GlobalMedia <span>Consolidated</span></h1>
+        </a>
+
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="dashboard.html" class="nav-link">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="notification.html" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-link active">
+                <i class="fa-solid fa-circle-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- CORE WORKSPACE FRAME -->
+    <main class="main-content">
+        
+        <div class="profile-card">
+            
+            <!-- AVATAR CONTROLLER ELEMENT -->
+            <div class="avatar-container">
+                <!-- Default Avatar placeholder icon rendered as SVG inside an image if storage is empty -->
+                <img id="avatarImg" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23a0aec0%22%3E%3Cpath%20d%3D%22M12%2012c2.21%200%204-1.79%204-4s-1.79-4-4-4-4%201.79-4%204%201.79%204%204%204zm0%202c-2.67%200-8%201.34-8%204v2h16v-2c0-2.66-5.33-4-8-4z%22%2F%3E%3C%2Fsvg%3E" alt="Profile Photo" class="avatar-preview">
+                
+                <label for="avatarInput" class="file-label-btn" title="Change Profile Picture">
+                    <i class="fa-solid fa-camera"></i>
+                </label>
+                <input type="file" id="avatarInput" class="hidden-input" accept="image/*" onchange="processAndSaveAvatar(this)">
+            </div>
+
+            <!-- PRIMARY DATA VIEWS -->
+            <h2 class="user-name">Miracle Emmanuel</h2>
+            <div class="user-role">Lead Administrator</div>
+
+            <div class="info-divider"></div>
+
+            <!-- CORE DETAILS BOX -->
+            <div class="details-box">
+                <div class="info-row">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div class="info-content">
+                        <label>Email Anchor Node</label>
+                        <span>miracleemmanuel@globalmedia.com</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div class="info-content">
+                        <label>Security Clearance Level</label>
+                        <span>Root Tier Admin (Level 5)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTION REDIRECT ROUTING CONTROLS -->
+            <div class="action-links-stack">
+                <a href="partnership.html" class="route-link-btn btn-primary">
+                    <i class="fa-solid fa-handshake"></i> Open Partnership Matrix
+                </a>
+                <a href="dashboard.html" class="route-link-btn btn-secondary">
+                    <i class="fa-solid fa-circle-left"></i> Return to Control Central
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- STATUS DISPLAY TOAST CONTAINER -->
+    <div id="statusToast" class="status-toast"><i class="fa-solid fa-circle-check"></i> Image Saved to LocalStorage!</div>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="site-footer">
+        <p style="color: #a0aec0; font-size: 13px;">&copy; 2026 GlobalMedia Consolidated. All rights reserved.</p>
+    </footer>
+
+    <!-- ENGINE SCRIPTS FOR DATABASE-FREE IMAGE PERSISTENCE -->
+    <script>
+        // Key variable target for browser local storage
+        const STORAGE_KEY = "gm_profile_avatar_data";
+
+        // Runs immediately when window loads to fetch existing image
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedAvatarData = localStorage.getItem(STORAGE_KEY);
+            if (savedAvatarData) {
+                document.getElementById('avatarImg').src = savedAvatarData;
+            }
+        });
+
+        // Processes the file local pointer, encodes it, and saves it
+        function processAndSaveAvatar(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const base64ImageString = e.target.result;
+
+                    // Step 1: Update visual frame dynamically
+                    document.getElementById('avatarImg').src = base64ImageString;
+
+                    // Step 2: Store into modern local storage keys without a back-end server
+                    try {
+                        localStorage.setItem(STORAGE_KEY, base64ImageString);
+                        triggerSuccessToast();
+                    } catch (error) {
+                        alert("Storage allocation error: Image size may be too massive for local storage limits. Please use a smaller file.");
+                        console.error("Local Storage Error: ", error);
+                    }
+                };
+
+                // Read local binary file data into an ASCII data url string
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Lightweight notification layout pop controller
+        function triggerSuccessToast() {
+            const toast = document.getElementById('statusToast');
+            toast.classList.add('show-toast');
+            
+            setTimeout(() => {
+                toast.classList.remove('show-toast');
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
